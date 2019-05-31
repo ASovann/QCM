@@ -1,0 +1,30 @@
+{% extends('base.html.twig') %}
+{% form_theme form 'boostrap_4_layout.html.twig' %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+    <br>
+    <form method="post">
+{% for question in questions %}
+    <div class="form-group">
+        <small id="QuestionTitle {{ question.id }}">{{ question.title }}: </small>
+        <label for="QuestionContent {{ question.id }}">{{ question.content }}</label>
+    </div>
+    {% for answer in answers %}
+        {%  if answer.question.id == question.id %}
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="{{ answer.id }}" value="{{ answer.status }}">
+                    <label class="custom-control-label" for={{ answer.id }}>{{ answer.content }}</label>
+                </div>
+
+
+        {% endif %}
+    {% endfor %}
+
+    <br>
+{% endfor %}
+        <button type="submit" value="Submit" name="Submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock %}

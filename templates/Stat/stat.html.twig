@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>{{ title }}</h1>
+    {% for questions in question %}
+        <p>{{ questions.title }}</p>
+        {% for answers in answer %}
+            {% if answers.question.id == questions.id %}
+                <p>{{ answers.content }} : {{ answers.status }}</p>
+            {% endif %}
+        {% endfor %}
+    <br>
+    {% endfor %}
+{% endblock %}
